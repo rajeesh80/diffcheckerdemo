@@ -1,0 +1,4 @@
+<aura:component >
+    <aura:attribute name="Res" type="String"/>
+    <aura:Handler event="c:CustomAppEvent" action="{!c.doHandle}"/>
+</aura:component>

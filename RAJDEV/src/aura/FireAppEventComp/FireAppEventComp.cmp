@@ -1,0 +1,7 @@
+<aura:component >
+    <aura:attribute name="myCodeFire" Type="String"/>
+    <aura:registerEvent name="myEvent" type="c:CustomAppEvent"/>
+    <ui:inputText Label="Enter Code" value="{!v.myCodeFire}"/>
+    <ui:Button Label="Submit" press="{!c.doFire}"/>
+	
+</aura:component>

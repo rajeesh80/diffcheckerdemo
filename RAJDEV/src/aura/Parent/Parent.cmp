@@ -1,0 +1,19 @@
+<aura:component >
+
+    <aura:attribute name="parentAttr" type="String" default="parent attribute"/>
+
+ 
+
+    <!-- Instantiate the child component -->
+
+    <c:child childAttr="{!v.parentAttr}" />
+
+        
+
+    <p>parentExpr parentAttr: {!v.parentAttr}</p>
+
+    <p><lightning:button label="Update parentAttr"
+
+          onclick="{!c.updateParentAttr}"/></p>
+
+</aura:component>

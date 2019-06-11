@@ -1,0 +1,9 @@
+<aura:component >
+	<aura:attribute name="alpha" type="String" default="z" />
+	<aura:registerEvent name="samplecompevt" type="c:FirstComponentevent"/>
+	<ui:inputText label="enter alphabet"  value="{!v.alpha}"/>
+	<ui:button label="submit" press="{!c.doSubmit}"/>
+
+
+
+</aura:component>

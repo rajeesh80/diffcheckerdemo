@@ -1,0 +1,9 @@
+<aura:component >
+	<aura:attribute name="Account" type="Account"/>
+	<div >
+    {!v.Account.name}---------------{!v.Account.Type}
+   </div>
+    
+		
+	
+</aura:component>

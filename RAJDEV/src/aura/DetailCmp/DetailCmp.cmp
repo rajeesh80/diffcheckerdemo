@@ -1,0 +1,70 @@
+<aura:component controller="FetchBoxDetails" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global"
+                >
+    <aura:handler event="c:FetchDetailsEvt" action="{!c.fetchDetails}" description="Handler to refresh list when the app event fires - when clicking on the box"/>
+    <aura:registerEvent name="refreshEvt" type="c.RefreshDetailsEvt" description="Registering a new component event. Refreshes the table"/>
+    <aura:handler name="refreshEvt" event="c:RefreshDetailsEvt" action="{!c.refreshTable}" description="Handler to refresh list when the app event fires - when clicking on the box"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" description="This init handles the border color for detail table."/>
+    <aura:attribute name="objs" type="List" description="Attribute to hold the list of objects"/>
+    <aura:attribute name="objType" type="String" description="Instead of passing using app event, using a container comp attribute" />
+    <aura:attribute name="objAttr" type="String" description="Instead of passing using app event, using a container comp attribute"/>
+    <aura:attribute name="label" type="String" description="This attribute decide the label on the box. Can change objects at page design time."/>
+    <!--The way box and details are shown in demo, there is a background border that is shared from box in detail component- may need it here!-->
+    <aura:attribute name="color" type="String" description="This attribute decides the color of the box.Need to get background color for border in detail list."/>
+    
+    <aura:attribute name="border-color" default="broder-style:double;" type="String" description="This is the border color matching the box background color"/>
+    <aura:attribute name="header" type="List" description="Attribute to return the comma seperated field names as a List of strings"/>    
+    <aura:attribute name="headerMap" type="Map" description="Attribute to return the comma seperated field names as a Map of string,string- inorder to retain the order"/>    
+    <aura:attribute name="listView" type="String" description="List view to navigate to when view all button is pressed"/>
+    <aura:attribute name="tableLimit" type="Integer" description="Limits the number of rows in the detail table"/>
+    <aura:attribute name="page" type="integer"/>
+    <aura:attribute name="pages" type="integer"/>
+    <aura:attribute name="total" type="integer"/>
+    <div class="slds">   	       
+        <div class="slds-list">
+            <!-- Dynamic referencing of variables inside iteration component doesnt work. Need an alternate approach
+    This is handled in client side controller(draft version).End Dynamic-->
+            <!--ROTHENANDIYIL 5/3/2017 v1.0 use a nested component; and use its renderer to draw-->
+            <!-- this is not working the first time, gets a blank list of records with header values.
+    work around is to dynamically create component from controller-->
+            <!--variables are not getting passed correctly to the child component, bringing the functionality to this
+    component.
+                <c.ObjDataTableCmp objects="{!v.objs}" fields="{!v.header}" page="5"/> --> 
+            <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">    
+                <head>
+                </head>    
+                <body> 
+                    <div class="slds" id="DetailContainer">
+                        <div class="slds-card__body">                    
+                            <section class="slds-card__body">
+                                <div class="slds-scrollable--x" id="DetailTable" >
+                                    <table class="slds-table slds-table--bordered slds-table--cell-buffer slds-max-medium-table--stacked-horizontal" role="grid" style="width:60.00rem;">
+                                        <thead id="head">
+                                            <tr class="slds-no-hover">
+                                                <aura:iteration items="{!v.header}" var="field" >
+                                                    <th class="slds-text-heading--label" scope="col">{!field}</th>
+                                                </aura:iteration>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="data">
+                                        </tbody>
+                                        
+                                    </table>
+                                    <div class="slds-float--right" id="ViewAllButton" aura:id="detailTableViewAll">
+                                            <br></br>
+                                            <ui:button class="slds-button" press="{!c.gotoObjList}" label="View All"/>
+                                            <!--  <ui:outputURL value="{!c.gotoObjList}" label="View All"/>
+                               <a onclick="{!c.gotoObjList}" >View All</a> -->
+                                        </div>
+                                    <!-- Show View All link when the BoxNum > tableLimit -->
+                                    
+                                </div>
+                            </section>
+                            
+                        </div>
+                    </div>            
+                </body>
+            </html>
+            
+        </div>
+    </div>
+</aura:component>

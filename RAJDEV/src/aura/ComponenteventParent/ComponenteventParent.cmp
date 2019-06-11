@@ -1,0 +1,7 @@
+<aura:component >
+	<aura:attribute name="Result" type="String" />
+
+	<aura:handler event="c:FirstComponentevent" action="{!c.doHandle}" name="samplecompevt"/>
+	<c:Componenteventchild />
+	<ui:outputText value="{!v.Result}"  />
+</aura:component>

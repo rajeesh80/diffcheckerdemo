@@ -1,0 +1,7 @@
+<aura:component>
+	
+	<aura:attribute  name="testLabel" type="String[]" Default="test" >
+		
+		<ui:inputText  value="{!v.testLabel}" ></ui:inputText>
+	</aura:attribute>
+</aura:component>

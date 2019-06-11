@@ -1,0 +1,18 @@
+{
+    "projectName": "RAJDEV",
+    "username": "rajeesh.othenandiyil@dotcom-team.com",
+    "id": "a6738b80-1755-11e9-b27a-6f24847411be",
+    "namespace": "",
+    "orgType": "developer",
+    "loginUrl": "https://login.salesforce.com/",
+    "instanceUrl": "https://rajltng-dev-ed.my.salesforce.com",
+    "workspace": "C:\\0.Work\\Projects",
+    "subscription": [
+        "ApexClass",
+        "ApexComponent",
+        "ApexPage",
+        "ApexTrigger",
+        "AuraDefinitionBundle",
+        "StaticResource"
+    ]
+}

@@ -1,0 +1,11 @@
+<aura:documentation>
+<aura:description>
+        <p>Allows to have a custom page header set by Admin</p>
+    	<p><pre>&lt;c:RaceHeaderCmp title="My Race Tracker" &gt;</pre></p>
+    </aura:description>
+	<aura:example name="RaceHeaderCmp" ref="c:RaceHeaderCmp" label="Using the race header component to customize title">
+		<p>
+            This example shows you what the <code>c:RaceHeaderCmp</code> looks like when rendered
+        </p>
+	</aura:example>
+</aura:documentation>

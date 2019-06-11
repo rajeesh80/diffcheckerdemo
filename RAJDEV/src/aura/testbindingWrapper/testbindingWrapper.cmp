@@ -1,0 +1,6 @@
+<aura:component implements="flexipage:availableForAllPageTypes">
+   <aura:attribute name="test" type="String" default="ash"/>
+    <aura:handler name="change" value="{!v.test}" action="{!c.handleChange}"/>
+    <c:testbinding test="{!v.test}"/>
+	
+</aura:component>

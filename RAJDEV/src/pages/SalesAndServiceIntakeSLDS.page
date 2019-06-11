@@ -1,0 +1,541 @@
+<apex:page showHeader="false" standardStylesheets="false" sidebar="false" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0" standardController="Case" extensions="caseRemoteExtension">
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+        <head>
+            <meta charset="utf-8" />
+            <meta http-equiv="x-ua-compatible" content="ie=edge" />
+            <title>Case creation template SLDS enabled</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <apex:slds />
+        </head>	
+        <apex:includeScript value="{!$Resource.JQuery_min_js}"/>
+        <body>
+            <div class="slds-scope" id="container">
+                <div class="slds-page-header  slds-align_absolute-center" >
+                    <div class="slds-grid">
+                        <div class="slds-col slds-has-flexi-truncate">
+                            <div class="slds-media slds-no-space slds-grow">
+                                <div class="slds-media__figure">
+                                    <!-- rewrite this using slds icon-->
+                                    <svg aria-hidden="true" class="slds-icon slds-icon-standard-case">
+                                        <use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/standard-sprite/svg/symbols.svg#case')}"></use>
+                                    </svg>
+                                </div>
+                                <div class="slds-media__body">
+                                    <p class="slds-text-title--caps slds-line-height--reset">Cases</p>
+                                    <!-- if recType is SalesAndService else show something else. -->
+                                    <h1 class="slds-page-header__title slds-m-right--small slds-align-middle slds-truncate" title="Case" id="pageTitle">New Case : Sales, Service &amp; Operations Intake Form</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--------------------------need to change class and style---------------------->
+                <div class="slds-grid slds-wrap  slds-align_absolute-center" style="width: 720px; ">
+                    <!--Create error div here -->
+                    <div class="slds-form-element" id="errorDiv">
+                        <div id="errorMessage" class="slds-form-element__help slds-text-heading_medium slds-hide"><h2><b>Test</b></h2></div>
+                    </div>
+                    <!-- -->
+                    <div class="slds-form-element" id="finalConfirmation">
+                        <div id="finalConfirmMessage" class="slds-form-element__help slds-text-heading_medium slds-hide"><h1><b>Thank you for submitting the case. You will be notified about the progress.</b></h1></div>
+                    </div>
+                    <!----->
+                    <div class="slds-form slds-form_compound" id="form">
+                        <fieldset class="slds-form-element">
+                            <div class="slds-p-top--x-small">
+                                <div class="slds-section__title slds-theme--shade primaryPaletteBorder">
+                                    <legend class="slds-form-element__label slds-text-title_caps">Intake Summary</legend>
+                                </div>
+                                <div class="slds-form-element__group">
+                                    <div class="slds-form-element__row">
+                                        <div class="slds-form-element slds-size_1-of-1">
+                                            <label class="slds-form-element__label" for="Subject">Subject</label>
+                                            <input class="slds-input" name="Subject" id="Subject" type="text"/>
+                                        </div>
+                                    </div>
+                                    <div class="slds-form-element__row">
+                                        <div class="slds-form-element slds-size_1-of-1">
+                                            <label class="slds-form-element__label" for="Description">Description</label>
+                                            <textarea class="slds-input" name="Description" id="Description" type="text" rows="2"/>
+                                        </div>
+                                    </div>
+                                    <div class="slds-form-element__row">
+                                        <div class="slds-form-element slds-size_1-of-2" id="errorDiv_Requestor_Name__c">
+                                            <label class="slds-form-element__label" for="Requestor_Name__c">
+                                                <abbr class="slds-required" title="required">*</abbr>Requester Name</label>
+                                            <input class="slds-input slds-required" id="Requestor_Name__c" type="text" required="required"/>
+                                        </div>
+                                        <div class="slds-form-element slds-size_1-of-2" id="errorDiv_Requester_Email__c">
+                                            <label class="slds-form-element__label" for="Requestor_Email__c">
+                                                <abbr class="slds-required" title="required">*</abbr>Requester Email</label>
+                                            <!--<label class="slds-form-element__label" for="Requester_Email__c" >Requester Email</label>-->
+                                            <input class="slds-input slds-required" id="Requester_Email__c" type="text" required="required"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <!------------------------------>
+                        <fieldset class="slds-form-element">
+                            <div class="slds-section__title slds-theme--shade primaryPaletteBorder test-id__section-header-container">  
+                                <legend class="slds-form-element__label slds-text-title_caps">Intake Details</legend>
+                            </div>
+                            <div class="slds-form-element__group">
+                                <div class="slds-form-element__row">
+                                    <div class="slds-form-element slds-size_1-of-2" id="errorDiv_Requester_EID__c">
+                                        <label class="slds-form-element__label" for="Requestor_EID__c">
+                                            <abbr class="slds-required" title="required">*</abbr>Requester EID</label>
+                                        <!--  <label class="slds-form-element__label" for="Requester_EID__c">Requester EID</label>-->
+                                        <input class="slds-input" id="Requester_EID__c" type="text"/>
+                                    </div>
+                                    <div class="slds-form-element slds-size_1-of-2" id="errorDiv_Requested_Team__c">
+                                        <label class="slds-form-element__label" for="Requested_Team__c"  id="RequestedTeamTitle">
+                                            <abbr class="slds-required" title="required">*</abbr>Requested Team</label>
+                                        <!--<label class="slds-form-element__label" for="Requested_Team__c">Requested Team</label>-->
+                                        <div class="slds-form-element__control">
+                                            <div class="slds-select_container">
+                                                <select id="Requested_Team__c" class="slds-select">
+                                                    <!--  <option value="Null" selected="selected">Test</option>-->
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-form-element__row">
+                                    
+                                    <div class="slds-form-element slds-size_1-of-2">
+                                        <label class="slds-form-element__label" for="Intake_Type__c">Intake Type</label>
+                                        <div class="slds-form-element__control">
+                                            <div class="slds-select_container">
+                                                <select id="Intake_Type__c" class="slds-select">
+                                                    <!--  <option value="Null" selected="selected">Test</option>-->
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--<div class="slds-form-element slds-size_1-of-2">
+                                        <label class="slds-form-element__label" for="Intake_Sub_type__c">Intake Sub-Type</label>
+                                        <div class="slds-form-element__control">
+                                            <div class="slds-select_container">
+                                                <select id="Intake_Sub_type__c" class="slds-select">
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>-->
+                                    <div class="slds-form-element slds-size_1-of-2" id="errorDiv_Sub_type__c">
+                                            <label class="slds-form-element__label" for="Sub_type__c">Sub type</label>
+                                            <div class="slds-form-element__control">
+                                                <div class="slds-select_container">
+                                                    <!--<select id="Sub_type__c" name= "Sub_type__c[]" class="slds-select" multiple="multiple">-->
+                                                    <select id="Sub_type__c" name= "Sub_type__c[]" class="slds-select" multiple="multiple">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="slds-form-element__row">
+                                    <div class="slds-form-element slds-size_1-of-2">
+                                        <label class="slds-form-element__label" for="Other_Sub_type__c">Other Sub-Type</label>
+                                        <input class="slds-input" id="Other_Sub_type__c" type="text"/>
+                                    </div>
+                                    <div class="slds-form-element slds-size_1-of-2">
+                                        <label class="slds-form-element__label" for="Department__c">Department</label>
+                                        <!--<input class="slds-input" name="Origin" id="origin" type="text"/>-->
+                                        <div class="slds-form-element__control">
+                                            <div class="slds-select_container">
+                                                <select id="Department__c" class="slds-select">
+                                                    <!--  <option value="Null" selected="selected">Test</option>-->
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-form-element__row">
+                                    <div class="slds-form-element slds-size_1-of-2">
+                                        <label class="slds-form-element__label" for="New_User_Role__c">New User Role</label>
+                                        <div class="slds-form-element__control">
+                                            <div class="slds-select_container">
+                                                <select id="New_User_Role__c" class="slds-select">
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slds-form-element slds-size_1-of-2">
+                                        <label class="slds-form-element__label" for="Other_Role__c">Other Role</label>
+                                        <input class="slds-input" name="Other_Role__c" id="Other_Role__c" type="text"/>
+                                    </div>
+                                </div>
+                                <div class="slds-form-element__row">
+                                    <div class="slds-form-element slds-size_1-of-2">
+                                        <label class="slds-form-element__label" for="Priority">Priority</label>
+                                        <div class="slds-form-element__control">
+                                            <div class="slds-select_container">
+                                                <select id="Priority" class="slds-select">
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slds-form-element slds-size_1-of-2">
+                                        <label class="slds-form-element__label" for="Target_Execution_Date__c">Target Execution Date</label>
+                                        <input class="slds-input" name="Target_Execution_Date__c" id="Target_Execution_Date__c" type="date"/>
+                                    </div>
+                                </div>
+                                 <div class="slds-form-element__row">
+                                        
+                                        <div class="slds-form-element slds-size_1-of-2">
+                                            <label class="slds-form-element__label" for="Adtrax_Number__c">Adtrax</label>
+                                        	<input class="slds-input" name="Adtrax_Number__c" id="Adtrax_Number__c" type="text"/>
+                                        </div>
+                                        <div class="slds-form-element slds-size_1-of-2">
+                                            
+                                        </div>
+                                        
+                                    </div>
+                            </div>
+                        </fieldset>
+                        <p>
+                            <i>If applicable, please respond directly to the automated confirmation email with your attachment(s).</i>
+                        </p>
+                        <div class="slds-col slds-no-flex slds-grid slds-align-top slds-align_absolute-center">
+                            <div class="slds-button-group" role="group">
+                                <button class="slds-button slds-button--brand" onclick="createCase()">    
+                                    Create Case
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-notify_container slds-hide" id="notification">
+                    <div class="slds-notify slds-notify--toast slds-theme--success" role="alert">
+                        <span class="slds-assistive-text">Success</span>
+                        <button class="slds-button slds-notify__close slds-button--icon-inverse" title="Close">
+                            <!--<svg aria-hidden="true" class="slds-button__icon slds-button__icon--large">
+                                <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                            </svg>-->
+                            <span class="slds-assistive-text">Close</span>
+                        </button>
+                        <div class="slds-notify__content slds-grid">
+                            <svg aria-hidden="true" class="slds-icon slds-icon--small slds-m-right--small slds-col slds-no-flex">
+                                <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#notification"></use>
+                            </svg>
+                            <div class="slds-col slds-align-middle">
+                                <h2 class="slds-text-heading--small ">Your case was successfully created! You will be notified about the completion.</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-notify_container slds-hide" id="error">
+                    <div class="slds-notify slds-notify--toast slds-theme--error" role="alert">
+                        <span class="slds-assistive-text">Success</span>
+                        <button class="slds-button slds-notify__close slds-button--icon-inverse" title="Close">
+                            <svg aria-hidden="true" class="slds-button__icon slds-button__icon--large">
+                                <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                            </svg>
+                            <span class="slds-assistive-text">Close</span>
+                        </button>
+                        <div class="slds-notify__content slds-grid">
+                            <svg aria-hidden="true" class="slds-icon slds-icon--small slds-m-right--small slds-col slds-no-flex">
+                                <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#notification"></use>
+                            </svg>
+                            <div class="slds-col slds-align-middle">
+                                <h2 class="slds-text-heading--medium" id="errorMsg"><b>Please fill in all required fields.</b></h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+            var reqTeamErrorMsg = '';
+            var recordTypeId = '012f1000001Dj2CAAS';
+            var reqTeam = '';
+            var Priority=[];
+            var Requested_Team__c = [];
+            var New_User_Role__c=[];
+            var Department__c=[];
+            var Intake_Type__c=[];
+            var Intake_Sub_type__c=[];
+            var Sub_type__c=[];
+            var optionStr = '<option value="None">--None--</option>';
+            var optionStrType = '';//'<option value="None">--None--</option>';
+            var optionStrSubtype='';//'<option value="None">--None--</option>';
+            var optionStrDept='';//'<option value="None">--None--</option>';
+            var optionStrUser='';//'<option value="None">--None--</option>';
+            var optionPriority='';
+            var multiPLSelectedValues=[];
+            var multiPLSelectedString='';
+            $(document).ready(function() {
+                console.log( "ready!" );
+                initPage();
+            });
+            function initPage(){
+                console.log('-----init page----');
+                if('{!recType}'=='SalesAndService'){
+                	document.getElementById("pageTitle").innerHTML = 'New Case : Sales, Service &amp; Operations Intake Form'   ; 
+                    //document.getElementById("RequestedTeamTitle").innerHTML="<abbr class='slds-required' title='required'>*</abbr>Requested Team";
+                    //reqTeamErrorMsg = 'Please fill in required field: Requested Team';
+                }
+                else{
+                    document.getElementById("pageTitle").innerHTML = 'New Case : Web Technology Intake Form'   ; 
+                    //document.getElementById("RequestedTeamTitle").innerHTML="<abbr class='slds-required' title='required'>*</abbr>Web Technology";
+                    //reqTeamErrorMsg = 'Please fill in required field: Web Technology';
+                }
+                 var plArray = JSON.parse( '{!JSENCODE(pickListStr)}' );
+                plArray.forEach(function (elm){
+                    console.log('---element'+elm);
+                    switch(elm['FieldName__c']){
+                        case 'Requested_Team__c':
+                            Requested_Team__c.push(elm);
+                            break;
+                        case 'New_User_Role__c':
+                            New_User_Role__c.push(elm);
+                            break;
+                        case 'Department__c':
+                            Department__c.push(elm);
+                            console.log('Department elm'+elm);
+                            break;
+                        case 'Intake_Type__c':
+                            Intake_Type__c.push(elm);
+                            break;
+                        case 'Sub_type__c':
+                            console.log('elm'+elm);
+                            Sub_type__c.push(elm);
+                            break;
+                        case 'Priority':
+                            Priority.push(elm);
+                            break;
+                    }
+                }
+                               );
+                //var optionStr='<option value="None">--None--</option>';
+                for (var i = 0; i < Requested_Team__c.length; i++) {
+                    optionStr += '<option value="' + Requested_Team__c[i]['Value__c']+ '">' + Requested_Team__c[i]['Value__c'] + '</option>';
+                }
+                for (var i = 0; i < Priority.length; i++) {
+                    optionPriority += '<option value="' + Priority[i]['Value__c']+ '">' + Priority[i]['Value__c'] + '</option>';
+                }
+                //console.log('Array length'+Requested_Team__c.length);
+                document.getElementById('Requested_Team__c').innerHTML=optionStr;
+                document.getElementById('Priority').innerHTML=optionPriority;
+                document.getElementById('Intake_Type__c').disabled = true;
+                document.getElementById('Sub_type__c').disabled = true;
+                document.getElementById('Department__c').disabled = true;
+                document.getElementById('New_User_Role__c').disabled = true;
+            }
+            $("#Requested_Team__c").change(function () {
+
+                if(this.value!='None'){
+                    for(var z=0;z<Requested_Team__c.length;z++){
+                        if(Requested_Team__c[z]['Value__c']==this.value){
+                            reqTeam = Requested_Team__c[z]['api_name__c'];
+                        }
+                    }
+                    document.getElementById('Intake_Type__c').disabled = false;
+                    document.getElementById('Sub_type__c').disabled = false;
+                    for(var z=0;z<Intake_Type__c.length;z++){
+                        if(Intake_Type__c[z]['ControllingFieldValue__c']==this.value){
+                            optionStrType += '<option value="' + Intake_Type__c[z]['Value__c'] + '">' + Intake_Type__c[z]['Value__c'] + '</option>';
+                        }
+                    }  
+                    document.getElementById('Intake_Type__c').innerHTML=optionStrType;
+                    optionStrType='';
+                    for(var z=0;z<Sub_type__c.length;z++){
+                        if(Sub_type__c[z]['ControllingFieldValue__c']==this.value){
+                            optionStrSubtype += '<option value="' + Sub_type__c[z]['Value__c'] + '">' + Sub_type__c[z]['Value__c'] + '</option>';
+                        }
+                    }  
+                    document.getElementById('Sub_type__c').innerHTML=optionStrSubtype;
+                    removeError('Requested_Team__c');
+                    optionStrSubtype='';
+                }
+                else{
+                    document.getElementById('Intake_Type__c').innerHTML='';
+                    document.getElementById('Sub_type__c').innerHTML='';
+                    document.getElementById('Intake_Type__c').disabled = true;
+                    document.getElementById('Sub_type__c').disabled = true;
+                    document.getElementById('Department__c').innerHTML='';
+                    
+                    document.getElementById('Department__c').disabled = true;
+                    document.getElementById('New_User_Role__c').innerHTML='';
+                    
+                    document.getElementById('New_User_Role__c').disabled = true;
+                }
+            });
+            $("#Requestor_Name__c").change(function () {
+                removeError('Requestor_Name__c');
+            });
+            $("#Requester_Email__c").change(function () {
+                removeError('Requester_Email__c');
+            });
+            $("#Requester_EID__c").change(function () {
+                removeError('Requester_EID__c');
+            });
+            $("#Sub_type__c").click(function(){
+                multiPLSelectedString='';
+                $("#Sub_type__c :selected").each(function(){
+                    multiPLSelectedValues.push($(this).val()); 
+                    multiPLSelectedString+=$(this).val()+';';
+                    console.log('inside multi select click:val-'+$(this).val());
+                });
+                //alert(selectedValues);
+                //alert(multiPLSelectedString);
+                return false;
+            });
+            $("#Sub_type__c").change(function () {
+                if(this.value!='None'){
+                    
+                    for(var z=0;z<Department__c.length;z++){
+                        //console.log('Controlling value:'+Department__c[z]['ControllingFieldValue__c']+':value:'+Department__c[z]['Value__c']);
+                        if(Department__c[z]['ControllingFieldValue__c']==this.value){
+                            optionStrDept += '<option value="' + Department__c[z]['Value__c'] + '">' + Department__c[z]['Value__c'] + '</option>';
+                        }
+                    }  
+                    //console.log('===xxxxxxxxxx====='+optionStrDept);
+                    document.getElementById('Department__c').innerHTML=optionStrDept;
+                    if(optionStrDept!=''){
+                        document.getElementById('Department__c').disabled = false;
+                        //document.getElementById('New_User_Role__c').disabled = false;
+                        for(var k=0;k<New_User_Role__c.length;k++){
+                            // console.log('Controlling value:'+New_User_Role__c[z]['ControllingFieldValue__c']+':value:'+New_User_Role__c[z]['Value__c']);
+                            if(New_User_Role__c[k]['ControllingFieldValue__c']==Department__c[0]['Value__c']){
+                                optionStrUser += '<option value="' + New_User_Role__c[k]['Value__c'] + '">' + New_User_Role__c[k]['Value__c'] + '</option>';
+                            }
+                        }  
+                        if(optionStrUser!=''){
+                            document.getElementById('New_User_Role__c').disabled = false;
+                        }
+                        console.log('yyyyyyy===xxxxxxxxxx====='+optionStrUser);
+                        document.getElementById('New_User_Role__c').innerHTML=optionStrUser;
+                        optionStrUser='';
+                    }
+                    optionStrDept='';
+                }
+                else{
+                    document.getElementById('Department__c').innerHTML='<option value="None">--None--</option>';
+                    document.getElementById('Department__c').disabled = true;
+                }
+            });
+            $("#Department__c").change(function () {
+                if(this.value!='None'){
+                    document.getElementById('New_User_Role__c').disabled = false;
+                    for(var z=0;z<New_User_Role__c.length;z++){
+                        // console.log('Controlling value:'+New_User_Role__c[z]['ControllingFieldValue__c']+':value:'+New_User_Role__c[z]['Value__c']);
+                        if(New_User_Role__c[z]['ControllingFieldValue__c']==this.value){
+                            optionStrUser += '<option value="' + New_User_Role__c[z]['Value__c'] + '">' + New_User_Role__c[z]['Value__c'] + '</option>';
+                        }
+                    }  
+                    // console.log('===xxxxxxxxxx====='+optionStrUser);
+                    document.getElementById('New_User_Role__c').innerHTML=optionStrUser;
+                    optionStrUser='';
+                }
+                else{
+                    document.getElementById('New_User_Role__c').value='';
+                    document.getElementById('New_User_Role__c').disabled = true;
+                }
+            });     
+            function validateRequiredFields(){
+                returnObj = new returnObject();
+                var reqFieldsArr = [];
+                reqFieldsArr	=	 ['Requestor_Name__c','Requestor_Email__c','Requestor_EID__c','Requested_Team__c'];
+                var nonCheck = ['New_User_Role__c','Department__c','Priority','Requested_Team__c','Intake_Type__c','Sub_type__c'];
+                if(document.getElementById('Requestor_Name__c').value==''){
+                    returnObj.success = false;
+                    returnObj.message = 'Please fill in required field: Requester Name';
+                    returnObj.values='Requestor_Name__c';
+                }
+                if(document.getElementById('Requester_Email__c').value==''){
+                    returnObj.success = false;
+                    returnObj.message = 'Please fill in required field: Requester Email';
+                    returnObj.values='Requester_Email__c';
+                }
+                if(document.getElementById('Requester_EID__c').value==''){
+                    returnObj.success = false;
+                    returnObj.message = 'Please fill in required field: Requester EID';
+                    returnObj.values='Requester_EID__c';
+                }
+                if(document.getElementById('Requested_Team__c').value==''||document.getElementById('Requested_Team__c').value=='None'){
+                    returnObj.success = false;
+                    returnObj.message = 'Please fill in required field: Requested Team';
+                    returnObj.values='Requested_Team__c';
+                }
+                return returnObj;
+            }
+            //function to add an error to the element
+            function addError(fieldId){
+                $("#errorDiv_" + fieldId ).addClass("slds-has-error");
+                $("#errorMessage_" + fieldId ).removeClass("slds-hide");
+                $(function() {
+                    // $('body').scrollTop(0);
+                    $(window).scrollTop( $("#container").offset().top );
+                });
+            }
+            
+            //function to remove an error from the element
+            function removeError(fieldId){
+                $("#errorDiv_" + fieldId ).removeClass("slds-has-error");
+                $("#errorMessage_" + fieldId ).addClass("slds-hide");
+            }
+            function createCase(){
+                //while submitting picklist values, get values from display vals.
+                var validResponse = validateRequiredFields();
+                console.log('validResponse'+validResponse);
+                if(validResponse.success!=true){
+                    addError(validResponse.values);
+                    $('#errorMessage').text(validResponse.message);
+                    $("#errorMessage").removeClass("slds-hide");
+                    $("#errorDiv").addClass("slds-has-error"); 
+                    $(function() {
+                        // $('body').scrollTop(0);
+                        $(window).scrollTop( $("#container").offset().top );
+                    });
+                    return false;
+                }
+                else{
+                    // $('#errorMessage').text(validResponse.message);
+                    $("#errorMessage").addClass("slds-hide");
+                    $("#errorDiv").removeClass("slds-has-error"); 
+                    
+                }
+                //reqTeam
+                //var caseDetails = {RecordTypeId:recordTypeId,Subject: document.getElementById("Subject").value,Requested_Team__c:document.getElementById("Requested_Team__c").value,Intake_Type__c: document.getElementById("Intake_Type__c").value,Sub_type__c: document.getElementById("Sub_type__c").value,Description:document.getElementById("Description").value,Requestor_Name__c:document.getElementById("Requestor_Name__c").value,Requester_Email__c:document.getElementById("Requester_Email__c").value,Requester_EID__c:document.getElementById("Requester_EID__c").value,Department__c:document.getElementById("Department__c").value,New_User_Role__c:document.getElementById("New_User_Role__c").value,Other_Sub_type__c:document.getElementById("Other_Sub_type__c").value,Other_Role__c:document.getElementById("Other_Role__c").value,Priority:document.getElementById("Priority").value};
+                var caseDetails = {RecordTypeId:recordTypeId,Subject: document.getElementById("Subject").value,Requested_Team__c:reqTeam,Target_Execution_Date__c:document.getElementById("Target_Execution_Date__c").value,Intake_Type__c: document.getElementById("Intake_Type__c").value,Sub_type__c: multiPLSelectedString,Description:document.getElementById("Description").value,Requestor_Name__c:document.getElementById("Requestor_Name__c").value,Requester_Email__c:document.getElementById("Requester_Email__c").value,Requester_EID__c:document.getElementById("Requester_EID__c").value,Department__c:document.getElementById("Department__c").value,New_User_Role__c:document.getElementById("New_User_Role__c").value,Other_Sub_type__c:document.getElementById("Other_Sub_type__c").value,Adtrax_Number__c:document.getElementById("Adtrax_Number__c").value,Other_Role__c:document.getElementById("Other_Role__c").value,Priority:document.getElementById("Priority").value};
+                try{
+                    Visualforce.remoting.Manager.invokeAction('caseRemoteExtension.createCase',JSON.stringify(caseDetails),
+                                                              function(result, event) {
+                                                                  console.log('result'+result);
+                                                                  console.log('result  event'+event);
+                                                                  for(var p in event){console.log('property p:'+p+' val:'+event[p]);}
+                                                                  if(event['status']==true){
+                                                                      $("#finalConfirmMessage").removeClass("slds-hide");
+                                                                      $("#form").addClass("slds-hide");
+                                                                  }
+                                                                  else{
+                                                                      console.log('inside error loop');
+                                                                      $('#errorMessage').text(event['message']);
+                                                                      $("#errorMessage").removeClass("slds-hide");
+                                                                      $("#errorDiv").addClass("slds-has-error"); 
+                                                                      $(function() {
+                                                                          //$('body').scrollTop(0);
+                                                                          $(window).scrollTop( $("#container").offset().top );
+                                                                      });
+                                                                  }
+                                                                  
+                                                                  
+                                                              });
+                }
+                catch(err){
+                    console.log('in remoting exception loop');
+                    $('#errorMessage').text(err.message);
+                    $("#errorMessage").removeClass("slds-hide");
+                    $("#errorDiv").addClass("slds-has-error");
+                }
+            }
+            function returnObject()
+            {
+                this.success = true;
+                this.message = 'Operation Ran Successfully';
+                this.values = '';
+            }
+            </script>
+        </body>
+    </html>
+</apex:page>

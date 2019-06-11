@@ -1,0 +1,25 @@
+<design:component >
+    <design:attribute name="objType" label="Type of sObject" datasource="Account,Activity,Case,Contact,Contract,Lead,Asset,Branch__c,Opportunity" 
+                      description="Type of object that is summarized in the box"/>
+        <!--ROTHENANDIYIL 5/4/2017 The design attribute is restricted to a list of sObjects. is this redundant when using a picklist? -->
+        <sfdc:objects >
+            <sfdc:object >Account</sfdc:object>
+            <sfdc:object >Contact</sfdc:object>
+            <sfdc:object >Lead</sfdc:object>
+            <sfdc:object >Asset</sfdc:object>
+            <sfdc:object >Branch__c</sfdc:object>
+            <sfdc:object >Opportunity</sfdc:object>
+            <sfdc:object >Activity</sfdc:object>
+            <sfdc:object >Campaign</sfdc:object>
+            <sfdc:object >Case</sfdc:object>
+            <sfdc:object >Contract</sfdc:object>
+        </sfdc:objects>
+    <design:attribute name="objAttr" label="Fields from the object" description="Type API name of fields as a comma seperated string that needs to be fetched in the list." />   
+    <design:attribute name="srchString" label="Where clause of the dynamic SOQL" description="Type the where clause for ex. CreatedDate=TODAY AND Type='Prospect' "/>
+    <design:attribute name="sortString" label="Sort specification of the dynamic SOQL" description="Speicify sort specification like 'fieldname ASC|DESC NULLS FIRST|LAST' for ex. Amount DESC NULLS LAST"/>
+    <design:attribute name="label" label="Label of the object on the Box" description="Label that is displayed in the box.Keep it short, else box grows based on text length" />
+	<design:attribute name="color" label="Style of the Box" description="pass inline style here.Some of this things that you can alter using this- color of box, color of label etc.
+                                                                         'background-color: hexadecimalcode; color:colorcode' for ex. 'background-color:#54698d';color:white"/>
+    <design:attribute name="limits" label="Query limit and detail table limit" description="pass SOQL limit and table limit seperated by ; for ex. 50;5 (if not set, defaults to 50000;10)"/>
+    <design:attribute name="listView" label="This list view is used to show all records when user clicks view all" description="List view is dynamically used inside code. if not present, uses a default list view like All Objects"/>
+</design:component>

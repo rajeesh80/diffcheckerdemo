@@ -1,0 +1,56 @@
+<apex:page showHeader="false" standardStylesheets="false" sidebar="false" applyHtmlTag="true" applyBodyTag="true" docType="html-5.0">
+<html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <title>COFI Advisor Support Intake</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Import the Design System style sheet -->
+  <apex:slds />
+</head>
+<body>
+
+  <!-- REQUIRED SLDS WRAPPER -->
+   <div class="slds-scope slds-p-around_xx-large" style="padding-top :18%">
+   <div align="center">
+      <td width="400" style="padding-bottom: 10px;border-collapse: collapse;font-size: 8pt;color: #666666;" align="center">
+        <!-- <img src="https://cofi--c.na55.content.force.com/servlet/servlet.ImageServer?id=015j0000000oE31&oid=00Dj0000001nSj0&lastMod=1424554560000" alt="" border="0" width="406" height="45" class="deviceWidthLogo"/>
+-->     
+</td>
+   </div>
+    <h1 id="badges" class="slds-text-heading--large slds-m-vertical--large slds-align_absolute-center"></h1>
+
+    <!-- MASTHEAD -->
+    <p class="slds-text-heading--label slds-m-bottom--small slds-align_absolute-center">
+      Please select the appropriate intake form to get started
+    </p>
+    <!-- / MASTHEAD -->
+
+    <!-- PRIMARY CONTENT WRAPPER -->
+    <div class="slds-align_absolute-center">
+      <button class="slds-button slds-button_brand slds-m-around_x-large" onclick="navSSIntake()">Sales, Service &amp; Operations</button>
+        <button class="slds-button slds-button_brand slds-m-around_x-large" onclick="navMT()">Web Technology</button>
+      <button class="slds-button slds-button_brand slds-m-around_x-large" title="Client Loyalty and Engagement" alt="Client Loyalty and Engagement" onclick="navCLAE()">Marketing Communications</button>
+    </div>
+    <!-- / PRIMARY CONTENT WRAPPER -->
+
+  
+  <!-- / REQUIRED SLDS WRAPPER -->
+    </div>
+</body>
+</html>
+
+<script>
+function navSSIntake() {
+    window.location = '/cofiadvintake/SalesAndServiceIntakeSLDS?recordType=SalesAndService';
+}
+function navCLAE() {
+    window.location = '/cofiadvintake/CLAESLDS?recordType=CLAE';
+}
+function navMT() {
+    window.location = '/cofiadvintake/SalesAndServiceIntakeSLDS?recordType=MarketingTechnology';
+}
+</script>
+
+</apex:page>

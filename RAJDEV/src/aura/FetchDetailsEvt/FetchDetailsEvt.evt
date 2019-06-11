@@ -1,0 +1,11 @@
+<aura:event type="APPLICATION" description="Clicking on the box fires this Event." >
+    <aura:attribute name="objType" type="String" description="SObject type"/>
+    <aura:attribute name="objAttr" type="String" description="SObject fields in the query"/>
+    <aura:attribute name="srchString" type="String" description="Search specification of the query"/>
+    <aura:attribute name="sortString" type="String" description="Sort specification"/>
+    <aura:attribute name="label" type="String" description="This attribute decide the label on the box. Can change objects at page design time."/>
+    <aura:attribute name="color" type="String" description="This attribute decides the color of the box. Can change at page design time."/>
+    <aura:attribute name="limits" type="String" description="Limit in query and display limit in detail table."/>
+    <aura:attribute name="boxNum" type="Integer" description="count of records from initial query. Needs this to show view all link in detail component"/>
+    <aura:attribute name="listView" type="String" description="List view to show all the objects"/>
+</aura:event>

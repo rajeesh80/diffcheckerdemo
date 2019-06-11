@@ -1,0 +1,17 @@
+.THIS #oppbox {
+   	background-color : #fab8a0;
+	float: left;
+    display: flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+    /*justify-content:space-between;*/
+    
+    width: 135px;
+    height: 90px;
+    text-align:center;
+    margin-left: 5px;
+    margin-right: 22px;
+    margin-top: 10px;
+    padding: 15px;
+   
+}

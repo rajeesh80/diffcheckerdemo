@@ -1,0 +1,17 @@
+.THIS #DetailContainer{
+    float:left;
+    flex-flow: row wrap;
+    display:flex;
+    /*clear:auto;
+	display:block;
+    */
+    /*overflow: hidden;
+	overflow-y: hidden;
+    margin-right:30px;
+border-radius:25px;
+    padding:5px;*/
+    width:100%;
+}
+.THIS #ViewAllButton{
+    padding: 5px;
+}

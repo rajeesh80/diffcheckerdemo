@@ -1,0 +1,11 @@
+<aura:documentation>
+<aura:description>
+        <p>This is the box component</p>
+    	<p><pre>&lt;c:BoxCmp&gt;</pre></p>
+    </aura:description>
+	<aura:example name="BoxCmp" ref="c:BoxCmp" label="Box component">
+		<p>
+            This example shows you what the <code>c:BoxCmp</code> looks like when rendered
+        </p>
+	</aura:example>
+</aura:documentation>

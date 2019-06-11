@@ -1,0 +1,5 @@
+<aura:component implements="flexipage:availableForAllPageTypes">
+    <aura:attribute name="test" type="String"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+	
+</aura:component>

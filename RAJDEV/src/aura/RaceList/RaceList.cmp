@@ -1,0 +1,18 @@
+<aura:component controller="ListRaceApexController" description="This component shows all the races">
+    <ltng:require styles="/resource/SLDS2/assets/styles/salesforce-lightning-design-system.min.css" />
+   
+    <aura:attribute name="races" type="Race__c" description="Attribute to hold the list of races"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" description="Handler to do initialization of list"/>
+    <aura:handler event="c:AddToRaceList" action="{!c.refreshRaceList}" description="Handler to refresh list when the app event fires - while adding a new race"/>
+	<div class="slds">   	
+         <div class="slds-m-around--small slds-p-top--large">
+             <div class="slds-card">
+                <aura:iteration items="{!v.races}" var="race" >
+                    <!-- Initially kept the markup for race here, moving it to a seperate component and making it nested-->
+                    <!-- nested component -->
+                    <c.Race race="{!race}"/>
+                </aura:iteration>
+              </div>
+        </div>
+	</div>
+</aura:component>

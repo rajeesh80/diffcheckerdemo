@@ -1,0 +1,11 @@
+<aura:documentation>
+<aura:description>
+        <p>This is the detail component that fetches a list of sobject types</p>
+    	<p><pre>&lt;c:DetailCmp&gt;</pre></p>
+    </aura:description>
+	<aura:example name="DetailCmp" ref="c:DetailCmp" label="Detail component">
+		<p>
+            This example shows you what the <code>c:DetailCmp</code> looks like when rendered
+        </p>
+	</aura:example>
+</aura:documentation>

@@ -1,0 +1,11 @@
+<aura:documentation>
+<aura:description>
+        <p>This component shows field values for a single race. Used inside RaceList</p>
+    	<p><pre>&lt;c:Race&gt;</pre></p>
+    </aura:description>
+	<aura:example name="Race" ref="c:Race" label="shows list of race">
+		<p>
+            This example shows you what the <code>c:Race</code> looks like when rendered
+        </p>
+	</aura:example>
+</aura:documentation>

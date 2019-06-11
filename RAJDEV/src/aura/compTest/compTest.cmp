@@ -1,0 +1,9 @@
+<aura:component >
+    <aura:attribute name="Test" type="String" default="hiii"/>
+    
+    <p>this s a test "{!v.Test}"</p>
+    <div>
+        <p>this s a test "{!v.Test}"</p>
+    </div>
+	
+</aura:component>

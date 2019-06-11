@@ -1,0 +1,11 @@
+<aura:documentation>
+<aura:description>
+        <p>This component allows to create a new race</p>
+    	<p><pre>&lt;c:NewRace&gt;</pre></p>
+    </aura:description>
+	<aura:example name="NewRace" ref="c:NewRace" label="Creates new race">
+		<p>
+            This example shows you what the <code>c:NewRace</code> looks like when rendered
+        </p>
+	</aura:example>
+</aura:documentation>

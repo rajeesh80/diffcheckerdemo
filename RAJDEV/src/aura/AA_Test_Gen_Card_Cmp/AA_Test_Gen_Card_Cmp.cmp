@@ -1,0 +1,53 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId,force:lightningQuickAction">
+    <aura:attribute name="root" type="Object" default='{  "card": {    "name": "Candidate Summary",    "avatar": "standard:contact",    "seq": "01",    "layout": [      {        "api": "Talent_Overview__c",        "label": "Overview",        "type": "text",        "seq": "01",        "col": "01",        "row": "01",        "required": true,        "validation": [          {            "length": "200",            "message": "Cant enter more than 200 chars"          }        ]      },      {        "api": "Talent_JobTitle__c",        "label": "Job Title",        "type": "lookup",        "seq": "02",        "col": "01",        "row": "01",        "required": true,        "validation": []      },      {        "api": "Talent_Skill_Comments__c",        "label": "Skill Comments",        "type": "text",        "seq": "04",        "col": "01",        "row": "01",        "required": false,        "validation": []      },      {        "api": "Talent_Goals_Interests__c",        "label": "Goals and Interests",        "type": "text",        "seq": "05",        "col": "02",        "row": "04",        "required": false,        "validation": []      },      {        "api": "Talent_languages__c",        "label": "Languages",        "type": "lookup[]",        "seq": "06",        "col": "01",        "row": "01",        "required": false,        "validation": []      },      {        "api": "Talent_Compensation_Preferences__c",        "label": "Compensation Preferences",        "type": "section",        "seq": "07",        "col": "02",        "row": "03",        "required": false,        "validation": []      },      {        "api": "Talent_G2_Commnets__c",        "label": "G2 Comments",        "type": "text",        "seq": "08",        "col": "02",        "row": "04",        "required": false,        "validation": []      }    ],    "items": [      {        "overview": "This candidate is really good."      },      {        "jobTitle": "software engineer"      },      {        "skills": [          "java",          "javascript"        ]      },      {        "skillComments": "Testing this"      },      {        "goalsNInterests": "Long term goals"      },      {        "languages": [          "English",          "Spanish"        ]      },      {        "compensationPreferences": {          "desiredMinRate": "100",          "desiredMaxRate": "200",          "desiredCurrency": "USD"        }      },      {        "g2Commnets": "Great guy, recruit immediately."      }    ],    "actions": [      {        "label": "Edit",        "type": "Button",        "allowedProfile": [          "Single Desk 1",          "System Administrator"        ]      },      {        "label": "Cancel",        "type": "Button",        "allowedProfile": [          "Single Desk 1",          "System Administrator"        ]      }    ]  }}'/>
+    <aura:attribute name="card" type="Object"/>
+    <aura:attribute name="data" type="Object"/>
+    <aura:attribute name="layout" type="Object"/>
+    <!--<aura:attribute name="validation" type="Object"/>-->
+    <aura:attribute name="action" type="Object"/>
+    <aura:attribute name="isLoaded" default="false" type="Boolean"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:if isTrue="{!v.isLoaded}">
+        <lightning:card > 
+            <aura:set attribute="title">
+                <header class="slds-media slds-media_center slds-has-flexi-truncate slds-p-bottom_xx-small">
+                    <div class="slds-media__figure">
+                        <span class="slds-icon_container slds-icon-standard-contact" title="">
+                            <lightning:icon iconName="{!v.card.avatar}" size="small" alternativeText=""/>
+                        </span>
+                    </div>
+                    <span class="slds-grid slds-has-flexi-truncate slds-grid_vertical-align-center">
+                        <span>
+                            <p>{!v.card.name}</p>
+                        </span>
+                    </span>
+                </header>
+            </aura:set>
+            <aura:set attribute="actions">
+                <div class="slds-no-flex flexbox-btn-group">
+                    <lightning:button variant="neutral" label="Cancel" onclick="{!c.disableInlineEdit}" />&nbsp;
+                    <lightning:button variant="brand" label="Save" onclick="{!c.saveCandidateSummary}" />
+                    <lightning:buttonGroup >
+                        <lightning:button variant="neutral" label="Edit" onclick="{!c.editTalentSummary}" />
+                    </lightning:buttonGroup>
+                </div>
+            </aura:set>
+            <div class="slds-card__body">
+                <aura:iteration items="{!v.layout}" var="fld">
+					<!--<lightning:input aura:id="{!fld.api}" label="{!fld.label}" name="{!fld.api}" required="{!fld.required}" type="{!fld.type}" />              	-->
+                    <c:AA_Test_Gen_Fld_Cmp fld="{!fld}"/>
+                </aura:iteration>
+            </div>
+             <aura:set attribute="footer">     
+                <div class="slds-no-flex slds-p-bottom_small">
+                        <div class="flexbox-btns">
+                            <div class="flexbox-btn-group">	
+                            <lightning:button variant="neutral" label="Cancel" onclick="{!c.disableInlineEdit}" />&nbsp;
+                            <lightning:button variant="brand" label="Save" onclick="{!c.saveCandidateSummary}" />
+                            </div>
+                        </div>    
+                </div>
+            </aura:set>
+        </lightning:card>
+    </aura:if>
+</aura:component>

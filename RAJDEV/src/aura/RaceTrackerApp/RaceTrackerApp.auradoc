@@ -1,0 +1,12 @@
+<aura:documentation>
+	<aura:description>
+        <p>This custom App allows to track all races. Also allows to create a new one and update attendence and results of existing races.This app is composed of 4 components. 3 regular component and a nested component inside an iterator element.</p>
+    	<p>Components</p>
+        <p><pre>&lt;c:RaceHeaderCmp title="My Race Tracker" &gt;</pre></p>
+        <p><pre>&lt;c:NewRaceCmp&gt;</pre></p>
+        <p><pre>&lt;c:RaceListCmp&gt;</pre></p>
+        <p><pre>&lt;c:RaceCmp&gt;</pre></p>
+        
+    </aura:description>
+
+</aura:documentation>

@@ -1,0 +1,16 @@
+<aura:component>
+
+    <lightning:badge label="Contact"/>
+
+	<div class="Record Details"> 
+    <lightning:card iconName="standard:account" title="Name" >
+        <div class="slds-p-horizontal--small">
+            <p class="slds-text-heading--small">
+                <lightning:formattedText title="Name" value="Name" /></p>
+           </div>
+    </lightning:card>
+    </div>
+
+
+
+</aura:component>

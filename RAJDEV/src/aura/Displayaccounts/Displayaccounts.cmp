@@ -1,0 +1,10 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <!--<ui:button label="FetchAccount" press="{!c.doFetch}"/>-->
+    <aura:attribute name="Accounts" type="Account[]"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doFetch}" />
+    <aura:iteration items="{!v.Accounts}" var="account">
+    
+        <c:Accountnested Account="!account"/>
+    </aura:iteration>
+        
+</aura:component>

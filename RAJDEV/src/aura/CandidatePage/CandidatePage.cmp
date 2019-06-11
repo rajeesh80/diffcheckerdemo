@@ -1,0 +1,5 @@
+<aura:component controller="doSave" implements="force:appHostable">
+	<lightning:input name="myInput" label="CandidateName" />
+	<lightning:input name="myInput1" label="Address" />
+	<lightning:button  label="Submit" onClick="{!c.doSave}"></lightning:button>
+</aura:component>

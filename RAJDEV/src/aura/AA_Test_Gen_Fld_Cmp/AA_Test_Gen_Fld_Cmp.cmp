@@ -1,0 +1,14 @@
+<aura:component >
+    <aura:attribute name="fld" type="Object"/>
+    <aura:attribute name="label" type="String"/>
+    <div>
+        <aura:if isTrue="{!v.fld.type =='text'}">
+    		<lightning:input aura:id="{!v.fld.api}" label="{!v.fld.label}" name="{!v.fld.api}" required="{!v.fld.required}" type="{!v.fld.type}" />
+            <aura:set attribute="else">
+            	<aura:if isTrue="{!v.fld.type =='lookup'}">
+                    <p>This is going to be a lookup component.</p>
+                </aura:if>
+            </aura:set>
+        </aura:if>
+    </div>
+</aura:component>

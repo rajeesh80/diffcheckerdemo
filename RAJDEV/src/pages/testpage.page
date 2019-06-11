@@ -1,0 +1,15 @@
+<apex:page Standardcontroller="Account" >
+  <!-- Begin Default Content REMOVE THIS -->
+  <h1>Congratulations</h1>
+  <apex:pageBlock title="mycontent">
+  <apex:pageBlockTable value="{!Account.Contacts}" var="iten">
+  <apex:column value="{!iten.name}"/>
+  
+  </apex:pageBlockTable>
+  
+  
+  
+  </apex:pageBlock>
+  This is your new Page: testpage
+  <!-- End Default Content REMOVE THIS -->
+</apex:page>

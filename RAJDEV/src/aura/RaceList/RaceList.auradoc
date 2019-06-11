@@ -1,0 +1,11 @@
+<aura:documentation>
+<aura:description>
+        <p>This component shows all the races</p>
+    	<p><pre>&lt;c:RaceList&gt;</pre></p>
+    </aura:description>
+	<aura:example name="RaceList" ref="c:RaceList" label="shows list of race">
+		<p>
+            This example shows you what the <code>c:RaceList</code> looks like when rendered
+        </p>
+	</aura:example>
+</aura:documentation>
