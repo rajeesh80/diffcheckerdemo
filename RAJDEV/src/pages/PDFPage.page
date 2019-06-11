@@ -1,0 +1,39 @@
+<apex:page standardController="Contact" recordSetVar="contacts" extensions="DataTableExportExtension" renderAs="PDF">
+	<apex:includeLightning />
+	<apex:pageBlock >
+		<apex:dataTable value="{!cons}" var="con" id="theTable" rowClasses="odd,even" styleClass="tableClass">
+        <apex:facet name="caption">Contacts to print</apex:facet>
+        <apex:facet name="header"></apex:facet>
+        <apex:facet name="footer"></apex:facet>
+
+        <apex:column style="width:150px">
+            <apex:facet name="header">First Name</apex:facet>
+            <apex:facet name="footer"></apex:facet>
+            <apex:outputText value="{!con.FirstName}"/>
+        </apex:column>
+
+        <apex:column style="width:150px">
+            <apex:facet name="header">Last Name</apex:facet>
+            <apex:facet name="footer"></apex:facet>
+            <apex:outputText value="{!con.LastName}"/>
+        </apex:column>
+        <apex:column style="width:200px">
+            <apex:facet name="header">Phone</apex:facet>
+            <apex:facet name="footer"></apex:facet>
+            <apex:outputText value="{!con.Phone}"/>
+        </apex:column>
+
+        <apex:column style="width:200px">
+            <apex:facet name="header">Email</apex:facet>
+            <apex:facet name="footer"></apex:facet>
+            <apex:outputText value="{!con.Email}"/>
+        </apex:column>
+
+        <apex:column style="width:200px">
+            <apex:facet name="header">Job Title</apex:facet>
+            <apex:facet name="footer"></apex:facet>
+            <apex:outputText value="{!con.Title}"/>
+        </apex:column>
+    </apex:dataTable>
+	</apex:pageBlock>
+</apex:page>

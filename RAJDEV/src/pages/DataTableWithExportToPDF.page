@@ -1,0 +1,62 @@
+<apex:page standardController="Contact" recordSetVar="contacts" extensions="DataTableExportExtension" lightningStyleSheets="true">
+    <apex:includeLightning />
+    <apex:includeScript value="{!$Resource.jquery}"/>
+    <apex:messages />
+    <div class="slds">
+        <section >
+          <div id="dataTable" />
+        </section> 
+    </div>
+    <apex:form id="form">
+        <apex:actionfunction name="setData" action="{!setData}" oncomplete="download();">
+            <apex:param name="pData" assignTo="{!PDFData}" value=""/>
+        </apex:actionfunction>
+        
+        <apex:actionfunction name="jsGeneratePDF" action="{!downloadPDF}"/>       
+        <apex:inputHidden id="hidData" value="{!PDFData}"/>
+    </apex:form>
+    <script>
+       $(document).ready(function() {
+                    console.log( "ready!" );
+                    //initPage();
+                });
+       function download(){
+        console.log('inside download');
+        jsGeneratePDF();
+       }
+        function saveData(data, callback){
+          console.log('save data in vfp');
+          var hidData = $('#hidData');
+          $('#hidData').val(JSON.stringify(data));
+          console.log('save data'+JSON.stringify(data));
+          setData(JSON.stringify(data));
+          //jsGeneratePDF();
+
+          //invoke callback; not needed?
+          if(typeof callback == 'function') callback();
+        }
+
+        $Lightning.use("c:DataTableApp", function(){
+          $Lightning.createComponent("c:DataTableCmp",
+                                  {
+                                    sendData: saveData
+                                  },
+                                  "dataTable" , 
+                                  function(component){
+                                      console.log('inside create component in vfp wrapper');
+                                     /*$A.eventService.addHandler({
+                                              event: 'force:showToast',
+                                              handler: function(event) {
+                                                  var lexOrigin = "https://rajatabc-dev-ed.lightning.force.com/";
+                                                  var message={type: "EventFromVF",
+                                                              message: event.getParams().message,
+                                                              toasttype: event.getParams().type};
+                                                  parent.postMessage(message, lexOrigin);
+                                            }
+                                      });*/
+                                      
+                                  }
+                                 );
+        });
+    </script>
+</apex:page>

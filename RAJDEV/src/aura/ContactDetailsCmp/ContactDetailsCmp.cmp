@@ -1,0 +1,58 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction,lightning:actionOverride">
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+	<aura:attribute name="simpleRecord" type="Map"/>
+    <force:recordData aura:id="contactRecord"
+        recordId="{!v.recordId}"
+        layoutType="FULL"
+        mode="VIEW"
+        targetFields="{!v.simpleRecord}"
+	/>
+	<lightning:overlayLibrary aura:id="overlayLib"/> 
+    <aura:attribute name="title" type="String" default="Custom Title"/>
+    <div  class="slds-align_absolute-center">
+	    <lightning:card >
+	        <aura:set attribute="title">
+	        </aura:set>
+	   
+	        <aura:set attribute="footer">
+	            <p>Can potentially put the entire record here without much trouble as it is loaded using LDS</p>
+	        </aura:set>
+	        <table>
+	        	<tbody>
+		        	<tr class="customBox">
+		        		<td class="slds-text-title_caps slds-align-top slds-cell-wrap">First Name </td>
+		        		<td>{!v.simpleRecord.FirstName}</td>
+		        	</tr>
+		        	<tr class="customBox">
+		        		<td class="slds-text-title_caps slds-align-top slds-cell-wrap">Last Name</td>
+		        		<td>{!v.simpleRecord.LastName}</td>
+		        	</tr>
+		        	<tr class="customBox">
+		        		<td class="slds-text-title_caps slds-align-top slds-cell-wrap">Email</td>
+		        		<td>{!v.simpleRecord.Email}</td>
+		        	</tr>
+		        	<tr class="customBox">
+		        		<td class="slds-text-title_caps slds-align-top slds-cell-wrap">Phone </td>
+		        		<td>{!v.simpleRecord.Phone}</td>
+		        	</tr>
+		        	<tr class="customBox">
+		        		<td class="slds-text-title_caps slds-align-top slds-cell-wrap">Job Title</td>
+		        		<td>{!v.simpleRecord.Title}</td>
+		        	</tr>
+		        	<tr class="customBox">
+		        		<td class="slds-text-title_caps slds-align-top slds-cell-wrap">Birth date</td>
+		        		<td>{!v.simpleRecord.Birthdate}</td>
+		        	</tr>
+		        	<tr class="customBox">
+		        		<td class="slds-text-title_caps slds-align-top slds-cell-wrap">Created from</td>
+		        		<td>{!v.simpleRecord.LeadSource}</td>
+		        	</tr>
+		        	<tr class="customBox">
+		        		<td class="slds-text-title_caps slds-align-top slds-cell-wrap">Fax</td>
+		        		<td>{!v.simpleRecord.Fax}</td>
+		        	</tr>
+		        </tbody>
+	        </table>
+	    </lightning:card>
+	</div>
+</aura:component>
